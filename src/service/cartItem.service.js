@@ -1,75 +1,63 @@
-import API from '../helper/axios';
+import { Value } from 'react-native-reanimated'
+import API from '../helper/axios'
 
-export const GetByAccountId = async (id, token) => {
-  try {
-    let url = 'apicartitems/getbyaccountid/' + id;
-    var config = {
-      headers: {Authorization: 'Bearer ' + token},
-    };
-    var response = await API.get(url, config);
-    return response.data;
-  } catch (e) {
-    console.log(e);
-    return e;
-  }
-};
+export const AddCartItem = async (values)=>{
+    try {
+        let url = "cart/createcartItem"
+        var fromData = new FormData();
+        fromData.append("userId",values.userId)
+        fromData.append("productId",values.productId)
+        fromData.append("amount",values.amount)
+        var response =await API.post(url, fromData);
+        console.log(response);
+        return response.data
+    }catch(e){
+        console.log(e)
+        return e;
+    }
+}
 
-export const CreateCartItem = async (values, token) => {
-  try {
-    let url = 'apicartitems/CreateCartItem';
-    var config = {
-      headers: {Authorization: 'Bearer ' + token},
-    };
-    var formData = new FormData();
-    formData.append('userId', values.userId);
-    formData.append('productId', values.productId);
-    formData.append('amount', values.amount);
-    var response = await API.post(url, formData, config);
-    return response.data;
-  } catch (e) {
-    console.log(e);
-    return e;
-  }
-};
 
-export const DeleteCartItem = async (id, token) => {
-  try {
-    let url = 'apicartitems/DeleteCartItem/' + id;
-    var config = {
-      headers: {Authorization: 'Bearer ' + token},
-    };
-    var response = await API.delete(url, config);
-    return response.data;
-  } catch (e) {
-    console.log(e);
-    return e;
-  }
-};
+export const Delete = async (id) =>{
+    try{
+        let url = "cart/deletecartitem/" + id;
+        var response = await API.delete(url);
+        return response.data;
+    }catch(e){
+        console.log(e);
+        return e;
+    }
+}
 
-export const ItemPlus = async (id, token) => {
-  try {
-    let url = 'apicartitems/ItemPlus/' + id;
-    var config = {
-      headers: {Authorization: 'Bearer ' + token},
-    };
-    var response = await API.put(url, null, config);
-    return response.data;
-  } catch (e) {
-    console.log(e);
-    return e;
-  }
-};
+export const Plus = async (id) =>{
+    try{
+        let url ="cart/itemplus" +id
+        var response =await API.put(url);
+        return response.data;
+    }catch (e){
+        console.log(e);
+        return e;
+    }
+}
 
-export const ItemRemove = async (id, token) => {
-  try {
-    let url = 'apicartitems/ItemRemove/' + id;
-    var config = {
-      headers: {Authorization: 'Bearer ' + token},
-    };
-    var response = await API.put(url, null, config);
-    return response.data;
-  } catch (e) {
-    console.log(e);
-    return e;
-  }
-};
+export const GetOrders = async ()=>{
+    try{
+        let url ="cart/itemremove" +id
+        var response = await API.get(url);
+        return response.data;
+    }catch(e){
+        console.log(e);
+        return e;
+    }
+}
+
+export const GetByUserId = async (id) =>{
+    try{
+        let url = "cart/getbyuserid/" +id
+        var response =await API.get(url);
+        return response.data;
+    }catch(e){
+        console.log(e);
+        return e;
+    }
+}

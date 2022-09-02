@@ -36,16 +36,22 @@ export default function LoginScreen(props) {
   //  if(response.statusCode=="400")
   else
    alert(response.data.message)
-
-   
-   
   };
 
+//   if (response && response.data && response.data.access_token) {
+//     await AsyncStorage.setItem('userToken', response.data.access_token);
+// }
+
   const setStateUser = async token =>{
+    console.log(token)
     await AsyncStorage.setItem('token',token);
+    console.log(`Token = ${token}`)
+
     var response =await GetByToken(token);
     if(response.statusCode == 200){
+      if (response && response.data && response.data.access_token){
       AsyncStorage.setItem("token" ,token);
+      }
       AsyncStorage.setItem("user" ,JSON.stringify(response.data))
     }
   }

@@ -24,12 +24,19 @@ export const GetByToken = async token =>{
             headers :{Authorization:"Bearer" +token},
         };
         var response =await API.get(url, config);
-        return response.data;
+        return response;
     }catch(e){
         console.log(e);
         return e;
     }
 };
+
+export const IsCheckToken = async token => {
+    var response = await GetByToken(token);
+    if (response.statusCode == 200) return true;
+    else if (response.response.status == 401) return false;
+    else return false;
+  };
 
 
 export const Register = async (value)=>{
@@ -50,3 +57,28 @@ export const Register = async (value)=>{
         
     }
 }
+
+// export const PutAccount = async (values, upfile, token) => {
+//     try {
+//       let url = 'ApiAccounts';
+//       var config = { 
+//         headers: {Authorization: 'Bearer ' + token},
+//       };
+//       var formData = new FormData();
+//       formData.append('id', values.id);
+//       formData.append("userFirstname", value.userFirstname);
+//       formData.append("userLastname", value.userLastname); 
+//       formData.append('roleId', values.roleId);
+//       if (upfile)
+//         formData.append('profileImage', {
+//           uri: upfile.uri,
+//           type: 'image/jpeg',
+//           name: 'photo.jpg',
+//         });
+//       var response = await API.put(url, formData, config);
+//       return response.data;
+//     } catch (e) {
+//       console.log(e); 
+//       return e;
+//     }
+//   };
