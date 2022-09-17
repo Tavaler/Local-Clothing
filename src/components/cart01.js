@@ -11,10 +11,11 @@ import {
 } from 'react-native';
 import {VStack, Badge} from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+/////////////////////ARM
 
 import {COLORS} from '../constants';
 import Shadows from '../helper/shadowStyle';
-import {PrimaryButton} from '../Components/Button';
+import {PrimaryButton} from '../components/Button';
 
 import {IntMoney} from '../helper/functionService';
 

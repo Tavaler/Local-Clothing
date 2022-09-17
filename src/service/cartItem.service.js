@@ -1,9 +1,10 @@
 import { Value } from 'react-native-reanimated'
-import API from '../helper/axios'
+import API from '../../helper/axios'
 
 export const AddCartItem = async (values)=>{
     try {
-        let url = "cart/createcartItem"
+        console.log(values)
+        let url = "CartItems/CreateCartItem"
         var fromData = new FormData();
         fromData.append("userId",values.userId)
         fromData.append("productId",values.productId)
@@ -20,7 +21,7 @@ export const AddCartItem = async (values)=>{
 
 export const Delete = async (id) =>{
     try{
-        let url = "cart/deletecartitem/" + id;
+        let url = "CartItems/DeleteCartItem/" + id;
         var response = await API.delete(url);
         return response.data;
     }catch(e){
@@ -31,7 +32,7 @@ export const Delete = async (id) =>{
 
 export const Plus = async (id) =>{
     try{
-        let url ="cart/itemplus" +id
+        let url ="CartItems/ItemPlus" +id
         var response =await API.put(url);
         return response.data;
     }catch (e){
@@ -42,7 +43,7 @@ export const Plus = async (id) =>{
 
 export const GetOrders = async ()=>{
     try{
-        let url ="cart/itemremove" +id
+        let url ="CartItems/ItemRemove" +id
         var response = await API.get(url);
         return response.data;
     }catch(e){
@@ -53,7 +54,7 @@ export const GetOrders = async ()=>{
 
 export const GetByUserId = async (id) =>{
     try{
-        let url = "cart/getbyuserid/" +id
+        let url = "CartItems/GetByAccountId/" +id
         var response =await API.get(url);
         return response.data;
     }catch(e){

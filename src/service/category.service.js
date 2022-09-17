@@ -1,4 +1,4 @@
-import API from "../helper/axios";
+import API from '../../helper/axios';
 
 var url = "Categories";
 export const GetCategory = async () => {

@@ -9,7 +9,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 
-//plus
+//plus mos
 
 
 export default class Cart extends React.Component {

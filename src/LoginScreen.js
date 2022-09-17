@@ -23,19 +23,17 @@ export default function LoginScreen(props) {
   // const bgimage = {require('../src/imgs/img/background12.png')}
 
   const onLogin =async()=>{
-    // alert(UserPassword)
    var response = await APILogin(userEmail,userPassword)
-  //  console.log(response)
-      console.log("Login"+JSON.stringify(response,null,2))
-      // console.log(response)
-   if(response.data.statusCode==200) {
+   console.log(response)
+   console.log("Login"+JSON.stringify(response,null,2))
+   if(response.statusCode==200) {
     setStateUser(response.token)
-    alert(response.data.message)
+    alert(response.message)
     props.navigation.navigate("TabScreens")
    }
   //  if(response.statusCode=="400")
   else
-   alert(response.data.message)
+   alert(response.message)
   };
 
 //   if (response && response.data && response.data.access_token) {
@@ -43,18 +41,38 @@ export default function LoginScreen(props) {
 // }
 
   const setStateUser = async token =>{
-    console.log(token)
-    await AsyncStorage.setItem('token',token);
-    console.log(`Token = ${token}`)
+    // console.log(token)
+
+    // await AsyncStorage.setItem('token',token);
+    // console.log(`Token = ${token}`)
 
     var response =await GetByToken(token);
-    if(response.statusCode == 200){
-      if (response && response.data && response.data.access_token){
-      AsyncStorage.setItem("token" ,token);
-      }
-      AsyncStorage.setItem("user" ,JSON.stringify(response.data))
-    }
+    // if(response.statusCode == 200){
+      // if (response && response.data && response.data.access_token){
+      await AsyncStorage.setItem("token" ,token);
+      console.log("token :" +token)
+      console.log("TESTTTTTTTTTTTTT")
+      console.log("response------------" + response)
+      await AsyncStorage.setItem("user" ,JSON.stringify(response.data));
+      console.log("User--------------------" + JSON.stringify(response.data))
+      // }
+      // AsyncStorage.setItem("user" ,JSON.stringify(response.data))
+    // }
   }
+
+  // const setStateUser = async token =>{
+  //   var response =await GetByToken(token);
+  //   if(response.statusCode === 200){
+  //     await AsyncStorage.setItem("token" ,token);
+  //     await AsyncStorage.setItem("user" ,JSON.stringify(response))
+  //   }
+  //   console.log(response)
+  //   if(response.statusCode === 200){
+  //     props.navigation.navigate("Home")
+  //    }else{
+  //     alert('ไม่พบข้อมูล')
+  //    }
+  // }
   
   const   [offset] = useState(new Animated.ValueXY({x:0,y: 80}));
   const [opacity] = useState(new Animated.Value(0));
@@ -131,7 +149,7 @@ export default function LoginScreen(props) {
        >
       <TextInput
       style={styles.input}
-        placeholder='userEmail'
+        placeholder='Email'
         autoCorrect={false}
         onChangeText={(e)=>{
           setUserEmail(e)
@@ -141,7 +159,7 @@ export default function LoginScreen(props) {
 
        <TextInput
         style={styles.input}
-        placeholder='userPassword'
+        placeholder='Password'
         autoCorrect={false}
         secureTextEntry={true} 
 

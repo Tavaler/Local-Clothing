@@ -45,11 +45,11 @@ const Profile = ({navigation}) => {
       <View style={styles.body}>
         <View style={styles.bodyContent}>
           <Text style={styles.name}>
-            dd
+            user
             {/* {user.userFirstname}  {user.userLastname} */}
           </Text>
           <Text style={styles.info}>
-            dd
+            exp@gmail.com
             {/* {user.userEmail} */}
           </Text>
           {/* <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text> */}
@@ -66,10 +66,11 @@ const Profile = ({navigation}) => {
               borderRadius: 30,
               backgroundColor: '#00BFFF',
             }}
-            onPress={() => navigation.navigate('CartItem')}>
+            onPress={() => navigation.navigate('Cart')}>
             <Text>Cart</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          <TouchableOpacity onPress={() => navigation.navigate('OrderScreen'
+          )}
             style={{
               marginTop: 10,
               height: 45,

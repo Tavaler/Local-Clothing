@@ -14,6 +14,10 @@ import Blog from './components/Blog';
 import Cart from './components/CartItem';
 // import ProfileScreen from './views/Profile';
 import Profile1 from './views/Profile1';
+import CartScreen from './components/cart';
+import SetAddress from './views/SetAddress';
+import OrderScreen from './views/OrderScreen';
+import PaymentScreen from './views/PaymentScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -100,7 +104,7 @@ const TabScreens = (props) => {
   );
 };
 
-const RootStack = () => {
+const RootStack = props => {
   return (
     <Stack.Navigator screenOptions={{
       headerShown: false
@@ -115,10 +119,18 @@ const RootStack = () => {
       <Stack.Screen name="TabScreens" component={TabScreens} />
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
 
-      <Stack.Screen name="CartItem" component={Cart} />
+      {/* <Stack.Screen name="Cart" component={Cart} /> */}
+      <Stack.Screen name="Cart" component={CartScreen} />
 
       {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
       <Stack.Screen name="Profile1" component={Profile1} />
+
+      <Stack.Screen name="SetAddress" component={SetAddress} />
+
+      <Stack.Screen name="OrderScreen" component={OrderScreen} />
+      <Stack.Screen name="Payment" component={PaymentScreen} />
+
+
 
       
 

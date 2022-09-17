@@ -5,12 +5,14 @@ var url = "user/";
 export const APILogin = async (userEmail,userPassword) =>{
     
     try {
-        // var url = "login/"
+        var url1 = "user/login/"
+
         var formData = new FormData();
         formData.append("userEmail", userEmail);
         formData.append("userPassword", userPassword);
-        var response = await API.post(url+"login/", formData);
-        return response;
+        // var response = await API.post(url+"login/", formData);
+        var response = await API.post(url1, formData);
+        return response.data;
     }catch (e){
         console.log(e);
         return e;
@@ -19,12 +21,13 @@ export const APILogin = async (userEmail,userPassword) =>{
 
 export const GetByToken = async token =>{
     try {
-        let url ="user/getbytoken";
+        let url ="user/GetByToken";
         var config={
-            headers :{Authorization:"Bearer" +token},
+            headers :{Authorization:"Bearer " +token},
+            //รูปแบบอยู่อย่างงี้ ไม่ต้องแก้ 
         };
         var response =await API.get(url, config);
-        return response;
+        return response.data;
     }catch(e){
         console.log(e);
         return e;

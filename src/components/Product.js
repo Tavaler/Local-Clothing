@@ -28,6 +28,9 @@ import { GetProducts } from '../service/product.service'
 // import { BASE_URL } from '../../helper/axios'
 // import {useSelector, useDispatch} from 'react-redux';
 
+import NavigationBar from 'react-native-navbar';
+import { color } from 'native-base/lib/typescript/theme/styled-system';
+
 
 const HomeScreen1 = ({ navigation }) => {
   { navigation }
@@ -51,7 +54,17 @@ const HomeScreen1 = ({ navigation }) => {
     console.log("Product" + JSON.stringify(response, null, 2))
   }
 
-
+  const rightButtonConfig = {
+    title: 'Next',
+    handler: () => alert('hello!'),
+  };
+  
+  const titleConfig = {
+    title: 'สินค้า',
+    
+    
+    // color: "#F39C12"
+  };
 
   addProductToCart = () => {
     Alert.alert('Success', 'The product has been added to your cart')
@@ -60,6 +73,13 @@ const HomeScreen1 = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      
+      <NavigationBar
+        style={{backgroundColor:"#3498DB"}}
+        title={titleConfig}
+        rightButton={rightButtonConfig}
+      />
+      
       <FlatList style={styles.list}
         contentContainerStyle={styles.listContainer}
         data={data}
@@ -82,6 +102,8 @@ const HomeScreen1 = ({ navigation }) => {
                 <View>
                   <Text style={styles.title}>{item.productName}</Text>
                   <Text style={styles.price}>{item.productPrice}</Text>
+                  {/* <Text style={styles.price}>{item.productImage}</Text> */}
+
                 </View>
               </View>
 
